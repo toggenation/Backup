@@ -2,12 +2,11 @@
 
 ## What it does
 1. Shutdown a list of VM's using `vmrun.exe` (shutdown Standby then Active)
-1. Perform a 7zip backups of both VM directorys
-2. Create an `sha256sum` checksum of each `7z` archive
-3. Run SCP to copy the 7z archive amd `sha256sum` to a NAS
-5. Startup the VM's again using `vmrun` (this time reverse the startup order - e.g. Active first then Standby)
+1. Perform 7zip backups of each VM directory to a local backup dir
+2. Create an `sha256sum` checksum of each `7z` archive using `Get-FileHash`
+3. Run Windows SCP.exe to copy the 7z archive/s and `sha256sum` to a remote SFTP server (NAS)
+5. Startup the VM's again using `vmrun` pausing between each restart to let the previous VM to boot up (this time reverse the startup order - e.g. Active first then Standby)
 6. Send an email notification including the backup log file
-
 
 ## How to use it
 Copy `config.example.ps1` to `config.ps1` and edit for your environment
