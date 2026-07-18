@@ -1,0 +1,10 @@
+# /etc/ssh/sshd_config
+
+Subsystem sftp internal-sftp
+
+Match User scp_user
+    ChrootDirectory /path/to/allowed/directory
+    ForceCommand internal-sftp
+    AllowTcpForwarding no
+    X11Forwarding no
+    PermitTunnel no
